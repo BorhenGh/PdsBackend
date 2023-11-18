@@ -19,6 +19,7 @@ public class Projet {
     private int id;
     private String titre;
     private String description;
+    private String imageUrl;
     private float budget;
     @Temporal(TemporalType.DATE)
     private Date dateProjet;
