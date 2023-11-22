@@ -118,15 +118,6 @@ public class AuthenticationService {
         }
     }
 
-    public User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof User) {
-            User user = (User) authentication.getPrincipal();
-            user = repository.findById(user.getId().longValue()).orElse(null);
-            Hibernate.initialize(user.getTokens());
-            return user;
-        }
-        return null;
-    }
+
 
 }

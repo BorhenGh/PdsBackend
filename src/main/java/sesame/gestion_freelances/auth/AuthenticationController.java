@@ -39,17 +39,6 @@ public class AuthenticationController {
     ) throws IOException {
         service.refreshToken(request, response);
     }
-    @GetMapping("/current-user")
-    @Operation(summary = "Get user connecter actuel")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User connecteé"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized")})
-    public ResponseEntity<User> getCurrentUser() {
-        User user = service.getCurrentUser();
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(user);
-    }
+
 
 }
