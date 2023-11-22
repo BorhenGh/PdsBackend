@@ -10,17 +10,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static sesame.gestion_freelances.models.Enumeration.Permission.ENTREPRISE_READ;
-import static sesame.gestion_freelances.models.Enumeration.Permission.ENTREPRISE_UPDATE;
-import static sesame.gestion_freelances.models.Enumeration.Permission.ENTREPRISE_DELETE;
-import static sesame.gestion_freelances.models.Enumeration.Permission.ENTREPRISE_CREATE;
-import static sesame.gestion_freelances.models.Enumeration.Permission.FREELANCER_READ;
-import static sesame.gestion_freelances.models.Enumeration.Permission.FREELANCER_CREATE;
-import static sesame.gestion_freelances.models.Enumeration.Permission.FREELANCER_DELETE;
-import static sesame.gestion_freelances.models.Enumeration.Permission.FREELANCER_UPDATE;
+
 @RequiredArgsConstructor
 public enum Role {
 
+    ENTREPRISE,
+    FREELANCER
+/*
     USER(Collections.emptySet()),
     FREELANCER(
             Set.of(
@@ -56,4 +52,6 @@ public enum Role {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return authorities;
     }
+
+ */
 }

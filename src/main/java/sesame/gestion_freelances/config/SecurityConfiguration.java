@@ -6,18 +6,21 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.web.cors.CorsConfiguration;
 
-import static org.springframework.http.HttpMethod.GET;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+import java.util.Arrays;
+
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-import static sesame.gestion_freelances.models.Enumeration.Permission.ENTREPRISE_READ;
-import static sesame.gestion_freelances.models.Enumeration.Permission.FREELANCER_READ;
-import static sesame.gestion_freelances.models.Enumeration.Role.ENTREPRISE;
-import static sesame.gestion_freelances.models.Enumeration.Role.FREELANCER;
 
 @Configuration
 @EnableWebSecurity
@@ -35,8 +38,7 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html",
-    "current-user"};
+            "/swagger-ui.html"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
@@ -48,11 +50,6 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                .requestMatchers("/api/v1/auth/**").hasAnyRole(FREELANCER.name(), ENTREPRISE.name())
-                                .requestMatchers(GET, "/api/v1/auth/**").hasAnyAuthority(FREELANCER_READ.name(),  ENTREPRISE_READ.name())
-                                //.requestMatchers(POST, "*").hasAnyAuthority(FREELANCER_CREATE.name(),  ENTREPRISE_CREATE.name())
-                                //.requestMatchers(PUT, "").hasAnyAuthority(FREELANCER_UPDATE.name(), ENTREPRISE_UPDATE.name())
-                                //.requestMatchers(DELETE, "").hasAnyAuthority(FREELANCER_DELETE.name(), ENTREPRISE_DELETE.name())
 
                                 .anyRequest()
                                 .authenticated()
@@ -69,4 +66,18 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
+
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
 }

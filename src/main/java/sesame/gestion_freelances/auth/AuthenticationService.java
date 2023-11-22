@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -116,12 +117,16 @@ public class AuthenticationService {
             }
         }
     }
+
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {
-            throw new IllegalStateException("User not authenticated");
+        if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof User) {
+            User user = (User) authentication.getPrincipal();
+            user = repository.findById(user.getId().longValue()).orElse(null);
+            Hibernate.initialize(user.getTokens());
+            return user;
         }
-
-        return (User) authentication.getPrincipal();
+        return null;
     }
+
 }

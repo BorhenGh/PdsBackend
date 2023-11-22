@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Permission {
-
+/*
     FREELANCER_READ("freelancer:read"),
     FREELANCER_UPDATE("freelancer:update"),
     FREELANCER_CREATE("freelancer:create"),
@@ -19,4 +19,6 @@ public enum Permission {
 
     @Getter
     private final String permission;
+
+ */
 }

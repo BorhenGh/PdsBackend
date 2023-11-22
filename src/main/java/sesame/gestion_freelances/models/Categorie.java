@@ -13,7 +13,7 @@ import sesame.gestion_freelances.models.Enumeration.CategorieProjet;
 @Data
 public class Categorie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Enumerated(EnumType.STRING)
