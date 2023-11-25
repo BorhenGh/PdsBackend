@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
             updatedProjet.setDescription(projet.getDescription());
             updatedProjet.setBudget(projet.getBudget());
             updatedProjet.setImageUrl(projet.getImageUrl());
-            updatedProjet.setDateProjet(projet.getDateProjet());
+            updatedProjet.setDuree(projet.getDuree());
             updatedProjet.setStatusProjet(projet.getStatusProjet());
             return projetDAO.save(updatedProjet);
         } else {

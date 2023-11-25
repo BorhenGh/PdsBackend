@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum Role {
 
-    ENTREPRISE,
+   Entreprise,
     FREELANCER
 /*
     USER(Collections.emptySet()),

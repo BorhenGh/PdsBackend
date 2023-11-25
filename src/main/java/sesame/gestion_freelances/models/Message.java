@@ -12,17 +12,22 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Offre {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String description;
-    private float prix_heure;
 
-    @JsonBackReference("freelance-offre")
+    @Temporal(TemporalType.DATE)
+    private Date date_envois;
 
+    @JsonBackReference("freelancer-Mess")
     @ManyToOne
-    @JoinColumn(name = "id_freelance")
+    @JoinColumn(name = "idFreelancer")
     private User freelancer;
+
+    @JsonBackReference("entreprise-Mess")
+    @ManyToOne
+    @JoinColumn(name = "idRhEntreprise")
+    private User entreprise;
 }

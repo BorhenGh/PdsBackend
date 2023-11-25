@@ -7,24 +7,30 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sesame.gestion_freelances.models.Enumeration.CategorieProjet;
+import sesame.gestion_freelances.models.Enumeration.NiveauCompetence;
+import sesame.gestion_freelances.models.Enumeration.TypeCompetence;
 
+import java.util.Date;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Categorie {
+public class Competence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String nom;
 
     @Enumerated(EnumType.STRING)
-    private CategorieProjet categorie;
+    private TypeCompetence typeC;
 
-    @JsonBackReference("projet-cat")
+    @Enumerated(EnumType.STRING)
+    private NiveauCompetence niveauC;
+
+    @JsonBackReference("freelancer-Comp")
     @ManyToOne
-    @JoinColumn(name = "idprojet")
-    private Projet projetReference;
+    @JoinColumn(name = "id_freelancer")
+    private User freelancer;
 }

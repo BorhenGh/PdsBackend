@@ -6,9 +6,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sesame.gestion_freelances.models.User;
+import sesame.gestion_freelances.repository.UserRepository;
 
 import java.io.IOException;
 
@@ -17,12 +19,16 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
+private final UserRepository repository;
     private final AuthenticationService service;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
+        if (repository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
         return ResponseEntity.ok(service.register(request));
     }
     @PostMapping("/authenticate")

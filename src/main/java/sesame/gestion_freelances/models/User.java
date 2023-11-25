@@ -1,26 +1,23 @@
 package sesame.gestion_freelances.models;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.Collection;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import sesame.gestion_freelances.models.Enumeration.Role;
 import sesame.gestion_freelances.token.Token;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Data
 @Builder
@@ -28,27 +25,59 @@ import sesame.gestion_freelances.token.Token;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+    private boolean etatDispo;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("freelance-demande")
+    @OneToMany(mappedBy = "freelancer")
+    private List<DemandeRealisation> demandeRealisationFr;
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("freelance-offre")
+    @OneToMany(mappedBy = "freelancer")
+    private List<Offre> offreList;
+
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("entreprise-Projet")
+    @OneToMany(mappedBy = "entreprise")
+    private List<Projet> listeDesProjets;
+
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("freelancer-Mess")
+    @OneToMany(mappedBy = "freelancer")
+    private List<Message> ListeMessFr;
+
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("entreprise-Mess")
+    @OneToMany(mappedBy = "entreprise")
+    private List<Message> listeMessEn;
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("freelancer-Comp")
+    @OneToMany(mappedBy = "freelancer")
+    private List<Competence> competences;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.name()));
+        }
+        return Collections.emptyList();
     }
-
 
     @Override
     public String getPassword() {

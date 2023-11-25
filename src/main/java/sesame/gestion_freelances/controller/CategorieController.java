@@ -1,5 +1,6 @@
 package sesame.gestion_freelances.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import sesame.gestion_freelances.controller.Api.CategorieApi;
 import sesame.gestion_freelances.models.Categorie;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 @RestController
 public class CategorieController implements CategorieApi {
+    @Autowired
     CategorieService categorieService;
     @Override
     public Categorie AjouterUneCategorie(Categorie categorie) {
