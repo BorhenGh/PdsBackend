@@ -1,6 +1,8 @@
 package sesame.gestion_freelances.controller.Api;
 
 import org.springframework.web.bind.annotation.*;
+import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Projet;
 
 import java.util.List;
@@ -18,4 +20,7 @@ public interface ProjetApi  {
     Optional<Projet> getProjetById(@PathVariable  int id);
     @GetMapping(value = Api_Root+"proj/All")
     List<Projet> TousLesProjets();
+    @GetMapping(value = Api_Root+"/proj/recherche/{domaine}/{technologie}")
+    List<Object[]> rechercherProjetsParDomaineEtTechnologie(@PathVariable DomaineExpertise domaine,@PathVariable Technologie technologie);
+
 }

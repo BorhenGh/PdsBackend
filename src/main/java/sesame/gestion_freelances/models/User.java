@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import sesame.gestion_freelances.models.Enumeration.Pays;
 import sesame.gestion_freelances.models.Enumeration.Role;
 import sesame.gestion_freelances.token.Token;
 
@@ -34,9 +35,12 @@ public class User implements UserDetails {
     private String firstname;
     private String lastname;
     private String email;
+    private String nomEntreprise;
+
     private String password;
     private boolean etatDispo;
-
+    private int numTel;
+    private Pays pays;
     @Enumerated(EnumType.STRING)
     private Role role;
 

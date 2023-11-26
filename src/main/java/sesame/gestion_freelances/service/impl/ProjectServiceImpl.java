@@ -3,6 +3,8 @@ package sesame.gestion_freelances.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Projet;
 import sesame.gestion_freelances.repository.ProjetDAO;
 import sesame.gestion_freelances.service.ProjectService;
@@ -55,5 +57,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Projet> TousLesProjets() {
         return projetDAO.findAll();
+    }
+
+    @Override
+    public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {
+        return projetDAO.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }
 }

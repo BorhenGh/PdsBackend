@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import sesame.gestion_freelances.models.Enumeration.Pays;
 import sesame.gestion_freelances.models.Enumeration.Role;
 
 @Data
@@ -16,5 +17,8 @@ public class RegisterRequest {
     private String lastname;
     private String email;
     private String password;
+    private int numTel;
+    private Pays pays;
+    private String nomEntreprise;
     private Role role;
 }

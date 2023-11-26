@@ -1,8 +1,11 @@
 package sesame.gestion_freelances.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import sesame.gestion_freelances.controller.Api.OffreApi;
+import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.service.OffreService;
 
@@ -35,5 +38,10 @@ public class OffreController implements OffreApi {
     @Override
     public List<Offre> tousLesOffres() {
         return offreService.tousLesOffres();
+    }
+
+    @Override
+   public List<Object[]> rechercherOffresParDomaineEtTechnologie(@PathVariable DomaineExpertise domaine, @PathVariable Technologie technologie) {
+        return offreService.rechercherOffresParDomaineEtTechnologie(domaine,technologie);
     }
 }
