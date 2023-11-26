@@ -12,7 +12,7 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface OffreDAO extends JpaRepository<Offre,Integer> {
-    @Query("SELECT o, o.freelancer.firstname,o.freelancer.lastname,o.freelancer.email,o.freelancer.competences,o.freelancer.etatDispo,o.freelancer.numTel,o.freelancer.pays FROM Offre o WHERE o.domaineExpertise = :domaine AND o.technologie = :technologie")
+    @Query("SELECT o, o.freelancer.firstname,o.freelancer.lastname,o.freelancer.numTel,o.freelancer.pays FROM Offre o WHERE o.domaineExpertise = :domaine AND o.technologie = :technologie")
     List<Object[]> rechercherOffresParDomaineEtTechnologie(
             @Param("domaine") DomaineExpertise domaine,
             @Param("technologie") Technologie technologie

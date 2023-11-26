@@ -19,6 +19,10 @@ public interface OffreApi {
     Optional<Offre> getOffreById(@PathVariable int id);
     @GetMapping(value = Api_Root+"offer/All")
     List<Offre> tousLesOffres();
-    @GetMapping(value = Api_Root+"/recherche/{domaine}/{technologie}")
- List<Object[]> rechercherOffresParDomaineEtTechnologie(@PathVariable DomaineExpertise domaine,@PathVariable Technologie technologie);
+    @GetMapping(value = Api_Root+"offer/recherche/{domaine}/{technologie}")
+    List<Object[]> rechercherOffresParDomaineEtTechnologie(
+            @PathVariable("domaine") DomaineExpertise domaine,
+            @PathVariable("technologie") Technologie technologie
+    );
+
 }
