@@ -40,6 +40,7 @@ public class User implements UserDetails {
     private String password;
     private boolean etatDispo;
     private int numTel;
+    @Enumerated(EnumType.STRING)
     private Pays pays;
     @Enumerated(EnumType.STRING)
     private Role role;
