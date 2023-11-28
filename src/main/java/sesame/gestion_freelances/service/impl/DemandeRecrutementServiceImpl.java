@@ -21,10 +21,7 @@ public class DemandeRecrutementServiceImpl implements DemandeRecrutementService 
     UserRepository userRepository;
     @Override
     public DemandeRecrutement createDemandeRecrutement(DemandeRecrutement demandeRecrutement) {
-        Integer id = demandeRecrutement.getId();
-        if (id != null) {
-            throw new RuntimeException("ID de demande de recrutement déjà défini");
-        }
+
 
         Offre offre = demandeRecrutement.getOffre();
         User entreprise = demandeRecrutement.getEntreprise();

@@ -23,10 +23,7 @@ public class DemandeServiceImpl implements DemandeService {
     @Autowired
     ProjetDAO projetDAO;
     public DemandeRealisation createDemandeRealisation(DemandeRealisation demandeRealisation) {
-        Integer id = demandeRealisation.getId();
-        if (id != null) {
-            throw new RuntimeException("ID de demande de réalisation déjà défini");
-        }
+
 
         Projet projet = demandeRealisation.getProjet();
         User freelancer = demandeRealisation.getFreelancer();

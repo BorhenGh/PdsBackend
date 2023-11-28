@@ -1,13 +1,14 @@
 package sesame.gestion_freelances.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import sesame.gestion_freelances.controller.Api.DemandeApi;
 import sesame.gestion_freelances.models.DemandeRealisation;
 import sesame.gestion_freelances.service.DemandeService;
 
 import java.util.List;
 import java.util.Optional;
-
+@RestController
 public class DemandeController implements DemandeApi {
     @Autowired
     DemandeService demandeService;

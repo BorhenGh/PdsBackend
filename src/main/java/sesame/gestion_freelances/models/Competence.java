@@ -2,6 +2,7 @@ package sesame.gestion_freelances.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,8 @@ public class Competence {
     @Enumerated(EnumType.STRING)
     private NiveauCompetence niveauC;
 
-    @JsonBackReference("freelancer-Comp")
-    @ManyToOne
+    @JsonIgnoreProperties("freelancer")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_freelancer")
     private User freelancer;
 }

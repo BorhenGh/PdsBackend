@@ -1,6 +1,7 @@
 package sesame.gestion_freelances.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,13 +22,13 @@ public class Message {
     @Temporal(TemporalType.DATE)
     private Date date_envois;
 
-    @JsonBackReference("freelancer-Mess")
-    @ManyToOne
+    @JsonIgnoreProperties("freelancer")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idFreelancer")
     private User freelancer;
 
-    @JsonBackReference("entreprise-Mess")
-    @ManyToOne
+    @JsonIgnoreProperties("entreprise")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idRhEntreprise")
     private User entreprise;
 }

@@ -1,9 +1,6 @@
 package sesame.gestion_freelances.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,35 +45,28 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("entreprise-demande")
+    @JsonIgnoreProperties("demandeRecrutementsEn")
     @OneToMany(mappedBy = "entreprise")
     private List<DemandeRecrutement> demandeRecrutementsEn;
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("freelance-demande")
+    @JsonIgnoreProperties("demandeRealisationFr")
     @OneToMany(mappedBy = "freelancer")
     private List<DemandeRealisation> demandeRealisationFr;
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("freelance-offre")
+    @JsonIgnoreProperties("offreList")
     @OneToMany(mappedBy = "freelancer")
     private List<Offre> offreList;
 
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("entreprise-Projet")
+    @JsonIgnoreProperties("listeDesProjets")
     @OneToMany(mappedBy = "entreprise")
     private List<Projet> listeDesProjets;
 
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("freelancer-Mess")
+    @JsonIgnoreProperties("ListeMessFr")
     @OneToMany(mappedBy = "freelancer")
     private List<Message> ListeMessFr;
 
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("entreprise-Mess")
+    @JsonIgnoreProperties("listeMessEn")
     @OneToMany(mappedBy = "entreprise")
     private List<Message> listeMessEn;
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonManagedReference("freelancer-Comp")
+    @JsonIgnoreProperties("competences")
     @OneToMany(mappedBy = "freelancer")
     private List<Competence> competences;
     @Override
