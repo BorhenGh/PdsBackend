@@ -21,6 +21,8 @@ public class Message {
 
     @Temporal(TemporalType.DATE)
     private Date date_envois;
+    @Temporal(TemporalType.TIME)
+    private Date Heure_envois;
 
     @JsonIgnoreProperties("freelancer")
     @ManyToOne(fetch = FetchType.EAGER)
