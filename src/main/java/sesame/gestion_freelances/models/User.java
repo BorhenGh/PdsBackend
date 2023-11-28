@@ -48,7 +48,10 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonManagedReference("entreprise-demande")
+    @OneToMany(mappedBy = "entreprise")
+    private List<DemandeRecrutement> demandeRecrutementsEn;
     @JsonIdentityReference(alwaysAsId = true)
     @JsonManagedReference("freelance-demande")
     @OneToMany(mappedBy = "freelancer")
