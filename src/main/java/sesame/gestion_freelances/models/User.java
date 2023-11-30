@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
     @JsonIgnore
@@ -69,6 +69,7 @@ public class User implements UserDetails {
     @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<Competence> competences;
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (role != null) {
@@ -86,17 +87,17 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
