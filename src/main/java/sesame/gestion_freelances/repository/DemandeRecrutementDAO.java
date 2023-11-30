@@ -4,12 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 import sesame.gestion_freelances.models.*;
 import sesame.gestion_freelances.models.Enumeration.EtatDemande;
 
 import java.util.List;
 
-@RepositoryRestResource
+@Repository
 public interface DemandeRecrutementDAO extends JpaRepository<DemandeRecrutement,Integer> {
     @Query("SELECT   f.prix_heure, f.description, f.domaineExpertise,f.technologie,d.etatD " +
             "FROM Offre f INNER JOIN f.demandeRecrutements d " +

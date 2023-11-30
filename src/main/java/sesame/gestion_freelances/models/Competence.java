@@ -30,7 +30,7 @@ public class Competence {
     @Enumerated(EnumType.STRING)
     private NiveauCompetence niveauC;
 
-    @JsonIgnoreProperties("freelancer")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_freelancer")
     private User freelancer;

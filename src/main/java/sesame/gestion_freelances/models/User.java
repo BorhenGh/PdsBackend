@@ -59,17 +59,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "entreprise")
     private List<Projet> listeDesProjets;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "freelancer")
-    private List<Message> ListeMessFr;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "entreprise")
-    private List<Message> listeMessEn;
     @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<Competence> competences;
-    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (role != null) {
@@ -87,17 +80,17 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-    @JsonIgnore
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-    @JsonIgnore
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-    @JsonIgnore
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

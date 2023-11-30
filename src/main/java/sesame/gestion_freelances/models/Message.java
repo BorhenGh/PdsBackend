@@ -24,13 +24,5 @@ public class Message {
     @Temporal(TemporalType.TIME)
     private Date Heure_envois;
 
-    @JsonIgnoreProperties("freelancer")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idFreelancer")
-    private User freelancer;
 
-    @JsonIgnoreProperties("entreprise")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idRhEntreprise")
-    private User entreprise;
 }
