@@ -17,7 +17,7 @@ public interface DemandeRecrutementApi {
     DemandeRecrutement  annulerDemandeRecrutement(@PathVariable Integer id);
     @GetMapping(value = Api_Root +"deleteRec/{id}")
     Optional< DemandeRecrutement> findById(@PathVariable Integer id);
-    @GetMapping(value = Api_Root +"deleteRec/all")
+    @GetMapping(value = Api_Root +"demandeRec/all")
     List< DemandeRecrutement> findAll();
     @GetMapping(value = Api_Root+"/demandeRec/valid/{iden}")
     List<Object[]> findAllValidDemande( @PathVariable Integer iden);

@@ -20,12 +20,12 @@ public class DemandeRealisation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonIgnoreProperties("freelancer")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idfreelancer")
     private User freelancer;
 
-    @JsonIgnoreProperties("projet")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idprojet")
     private Projet projet;

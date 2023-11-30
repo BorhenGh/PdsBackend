@@ -1,6 +1,7 @@
 package sesame.gestion_freelances.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,12 +19,12 @@ public class DemandeRecrutement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonIgnoreProperties("entreprise")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idEntreprise")
     private User entreprise;
 
-    @JsonIgnoreProperties("offre")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idOffre")
     private Offre offre;

@@ -1,9 +1,6 @@
 package sesame.gestion_freelances.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,11 +27,11 @@ public class Offre {
 
     @Enumerated(EnumType.STRING)
     private Technologie technologie;
-    @JsonIgnoreProperties("freelancer")
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_freelance")
     private User freelancer;
-    @JsonIgnoreProperties("demandeRecrutements")
+    @JsonIgnore
     @OneToMany(mappedBy = "offre")
     private List<DemandeRecrutement> demandeRecrutements;
 }

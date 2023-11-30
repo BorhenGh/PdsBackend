@@ -45,28 +45,28 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-    @JsonIgnoreProperties("demandeRecrutementsEn")
+    @JsonIgnore
     @OneToMany(mappedBy = "entreprise")
     private List<DemandeRecrutement> demandeRecrutementsEn;
-    @JsonIgnoreProperties("demandeRealisationFr")
+    @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<DemandeRealisation> demandeRealisationFr;
-    @JsonIgnoreProperties("offreList")
+    @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<Offre> offreList;
 
-    @JsonIgnoreProperties("listeDesProjets")
+    @JsonIgnore
     @OneToMany(mappedBy = "entreprise")
     private List<Projet> listeDesProjets;
 
-    @JsonIgnoreProperties("ListeMessFr")
+    @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<Message> ListeMessFr;
 
-    @JsonIgnoreProperties("listeMessEn")
+    @JsonIgnore
     @OneToMany(mappedBy = "entreprise")
     private List<Message> listeMessEn;
-    @JsonIgnoreProperties("competences")
+    @JsonIgnore
     @OneToMany(mappedBy = "freelancer")
     private List<Competence> competences;
     @Override
