@@ -31,7 +31,7 @@ public class Competence {
     private NiveauCompetence niveauC;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_freelancer")
     private User freelancer;
 }

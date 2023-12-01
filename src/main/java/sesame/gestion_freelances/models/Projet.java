@@ -14,8 +14,8 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Projet {
 
     @Id
@@ -39,8 +39,7 @@ public class Projet {
     private List<DemandeRealisation> DemandeRealisation;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "idEntreprise")
     private User entreprise;
 }

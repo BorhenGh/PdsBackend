@@ -22,13 +22,15 @@ public class Offre {
     private int id;
     private String description;
     private float prix_heure;
+
+
     @Enumerated(EnumType.STRING)
     private DomaineExpertise domaineExpertise;
 
     @Enumerated(EnumType.STRING)
     private Technologie technologie;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_freelance")
     private User freelancer;
     @JsonIgnore
