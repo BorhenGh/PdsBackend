@@ -30,7 +30,7 @@ public class Offre {
     @Enumerated(EnumType.STRING)
     private Technologie technologie;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_freelance")
     private User freelancer;
     @JsonIgnore
