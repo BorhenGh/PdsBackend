@@ -41,7 +41,7 @@ public class User implements UserDetails {
     private Pays pays;
     @Enumerated(EnumType.STRING)
     private Role role;
-
+    private String profileImageUrl;
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
@@ -99,5 +99,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

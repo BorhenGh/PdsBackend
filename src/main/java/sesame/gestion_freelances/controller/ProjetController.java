@@ -1,7 +1,11 @@
 package sesame.gestion_freelances.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.controller.Api.ProjetApi;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
@@ -14,19 +18,20 @@ import java.util.Optional;
 public class ProjetController implements ProjetApi {
     @Autowired
     ProjectService projectService;
+
     @Override
-    public Projet AjouterUnProjet(Projet projet) {
-        return projectService.AjouterUnProjet(projet);
+    public Projet ajouterUnProjet(@RequestPart("projet") Projet projet, @RequestPart("image") MultipartFile image) {
+        return projectService.ajouterUnProjet(projet, image);
     }
 
     @Override
     public void SupprimerUnProjet(int id) {
-        projectService.SupprimerUnProjet(id);
+        projectService.supprimerUnProjet(id);
     }
 
     @Override
-    public Projet UpdateUnProjet(Projet projet, int id) {
-        return projectService.UpdateUnProjet(projet,id);
+    public Projet updateUnProjet(Projet projet, int id, MultipartFile image) {
+        return projectService.updateUnProjet(projet, id, image);
     }
 
     @Override
@@ -36,11 +41,11 @@ public class ProjetController implements ProjetApi {
 
     @Override
     public List<Projet> TousLesProjets() {
-        return projectService.TousLesProjets();
+        return projectService.tousLesProjets();
     }
 
     @Override
     public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {
-        return projectService.rechercherProjetsParDomaineEtTechnologie(domaine,technologie);
+        return projectService.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }
 }
