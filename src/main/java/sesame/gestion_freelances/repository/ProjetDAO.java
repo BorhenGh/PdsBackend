@@ -11,7 +11,7 @@ import sesame.gestion_freelances.models.Projet;
 
 import java.util.List;
 
-@Repository
+@RepositoryRestResource
 public interface ProjetDAO extends JpaRepository<Projet,Integer> {
     @Query("SELECT p, p.entreprise.nomEntreprise, p.entreprise.pays, p.entreprise.numTel FROM Projet p WHERE p.domaineExpertise = :domaine AND p.technologie = :technologie")
     List<Object[]> rechercherProjetsParDomaineEtTechnologie(

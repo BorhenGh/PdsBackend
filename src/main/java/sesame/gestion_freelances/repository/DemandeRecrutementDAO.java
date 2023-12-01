@@ -10,7 +10,7 @@ import sesame.gestion_freelances.models.Enumeration.EtatDemande;
 
 import java.util.List;
 
-@Repository
+@RepositoryRestResource
 public interface DemandeRecrutementDAO extends JpaRepository<DemandeRecrutement,Integer> {
     @Query("SELECT   f.prix_heure, f.description, f.domaineExpertise,f.technologie,d.etatD " +
             "FROM Offre f INNER JOIN f.demandeRecrutements d " +

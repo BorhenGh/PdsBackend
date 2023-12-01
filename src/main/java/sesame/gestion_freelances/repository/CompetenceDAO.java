@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 import sesame.gestion_freelances.models.Competence;
 
-@Repository
+@RepositoryRestResource
 public interface CompetenceDAO extends JpaRepository<Competence,Integer> {
 }

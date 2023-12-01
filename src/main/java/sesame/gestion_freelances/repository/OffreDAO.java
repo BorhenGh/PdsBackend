@@ -11,7 +11,7 @@ import sesame.gestion_freelances.models.Offre;
 
 import java.util.List;
 
-@Repository
+@RepositoryRestResource
 public interface OffreDAO extends JpaRepository<Offre,Integer> {
     @Query("SELECT o, o.freelancer.firstname,o.freelancer.lastname,o.freelancer.numTel,o.freelancer.pays FROM Offre o WHERE o.domaineExpertise = :domaine AND o.technologie = :technologie")
     List<Object[]> rechercherOffresParDomaineEtTechnologie(

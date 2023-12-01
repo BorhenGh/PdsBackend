@@ -13,7 +13,7 @@ import sesame.gestion_freelances.models.User;
 import java.util.Date;
 import java.util.List;
 
-@Repository
+@RepositoryRestResource
 public interface DemandeRealisationDAO extends JpaRepository<DemandeRealisation,Integer> {
 
     @Query("SELECT   f.titre, f.description, f.imageUrl,f.duree,d.etatD " +
