@@ -10,6 +10,7 @@ import sesame.gestion_freelances.models.Enumeration.Technologie;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -36,4 +37,19 @@ public class Offre {
     @JsonIgnore
     @OneToMany(mappedBy = "offre")
     private List<DemandeRecrutement> demandeRecrutements;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "projet_imagess",
+            joinColumns = {
+                    @JoinColumn(name = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "image_id")
+            }
+    )
+    private Set<ImageModel> productImagess;
+
+    public Set<ImageModel> getProductImages() {
+        return productImagess;
+    }
 }

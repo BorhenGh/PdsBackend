@@ -1,17 +1,21 @@
 package sesame.gestion_freelances.controller.Api;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
 import static sesame.gestion_freelances.utils.Constants.Api_Root;
+
+import java.rmi.MarshalException;
 import java.util.List;
 import java.util.Optional;
 
 public interface OffreApi {
-    @PostMapping(value = Api_Root+"offer/create")
-    Offre ajouterUneOffre(@RequestBody Offre offre);
+    @PostMapping(value = Api_Root+"offer/create",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    Offre ajouterUneOffre(@RequestPart(value = "offre")  Offre offre , @RequestPart(value = "imageFile") MultipartFile[] file);
     @DeleteMapping(value = Api_Root+"offer/{id}")
     void supprimerUneOffre(@PathVariable int id);
     @PutMapping(value = Api_Root+"offer/{id}")
