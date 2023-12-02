@@ -59,7 +59,7 @@ public class Projet {
     private List<DemandeRealisation> DemandeRealisation;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idEntreprise")
     private User entreprise;
 }
