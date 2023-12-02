@@ -11,6 +11,7 @@ import sesame.gestion_freelances.models.Enumeration.Technologie;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -34,6 +35,25 @@ public class Projet {
     @Enumerated(EnumType.STRING)
     private StatusProjet statusProjet;
 
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "projet_images",
+            joinColumns = {
+                    @JoinColumn(name = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "image_id")
+            }
+    )
+    private Set<ImageModel> productImages;
+
+    public Set<ImageModel> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(Set<ImageModel> productImages) {
+        this.productImages = productImages;
+    }
     @JsonIgnore
     @OneToMany(mappedBy = "projet")
     private List<DemandeRealisation> DemandeRealisation;

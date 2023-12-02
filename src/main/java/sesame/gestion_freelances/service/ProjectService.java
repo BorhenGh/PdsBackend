@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectService {
-    Projet ajouterUnProjet(Projet projet, MultipartFile image);
+    Projet ajouterUnProjet(Projet projet);
     void supprimerUnProjet(int id);
     Projet updateUnProjet(Projet projet, int id, MultipartFile image);
     Optional<Projet> getProjetById(int id);

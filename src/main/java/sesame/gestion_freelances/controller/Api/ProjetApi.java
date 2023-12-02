@@ -16,7 +16,8 @@ public interface ProjetApi  {
 
 
     @PostMapping(value = Api_Root + "proj/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    Projet ajouterUnProjet(@RequestPart("projet") Projet projet, @RequestPart("image") MultipartFile image);
+    Projet ajouterUnProjet(@RequestPart(value = "projet", required = true) Projet projet,
+                           @RequestPart(value = "imageFile", required = true) MultipartFile[] file);
 
 
     @PutMapping(Api_Root + "proj/{id}")

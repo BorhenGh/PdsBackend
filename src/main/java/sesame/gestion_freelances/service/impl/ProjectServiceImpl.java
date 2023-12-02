@@ -31,12 +31,11 @@ public class ProjectServiceImpl implements ProjectService {
     private static final String UPLOAD_DIR = "src/main/resources/static/profile-images/project-images/";
 
     @Override
-    public Projet ajouterUnProjet(Projet projet, MultipartFile image) {
-        validateFile(image);
-        String imageUrl = saveImage(image);
-        projet.setImageUrl(imageUrl);
+    public Projet ajouterUnProjet(Projet projet) {
         return projetDAO.save(projet);
     }
+
+
 
     @Override
     public void supprimerUnProjet(int id) {
