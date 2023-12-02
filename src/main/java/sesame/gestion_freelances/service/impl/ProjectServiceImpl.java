@@ -28,14 +28,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     ProjetDAO projetDAO;
 
-    private static final String UPLOAD_DIR = "src/main/resources/static/profile-images/project-images/";
 
     @Override
     public Projet ajouterUnProjet(Projet projet) {
         return projetDAO.save(projet);
     }
-
-
 
     @Override
     public void supprimerUnProjet(int id) {
@@ -43,9 +40,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Projet updateUnProjet(Projet projet, int id, MultipartFile image) {
-        validateFile(image);
-
+    public Projet updateUnProjet(Projet projet, int id) {
         Optional<Projet> existingProjet = projetDAO.findById(id);
 
         if (existingProjet.isPresent()) {
@@ -55,12 +50,6 @@ public class ProjectServiceImpl implements ProjectService {
             updatedProjet.setBudget(projet.getBudget());
             updatedProjet.setDuree(projet.getDuree());
             updatedProjet.setStatusProjet(projet.getStatusProjet());
-
-            // Mettez à jour l'image uniquement si un nouveau fichier est fourni
-            if (image != null && !image.isEmpty()) {
-                String imageUrl = saveImage(image);
-                updatedProjet.setImageUrl(imageUrl);
-            }
 
             return projetDAO.save(updatedProjet);
         } else {
@@ -83,28 +72,5 @@ public class ProjectServiceImpl implements ProjectService {
         return projetDAO.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }
 
-    private void validateFile(MultipartFile file) {
-        if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("Fichier non valide ou manquant.");
-        }
-    }
 
-    private String saveImage(MultipartFile image) {
-        try {
-            String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
-            Path uploadPath = Path.of(UPLOAD_DIR);
-
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-            return filePath.toString();
-        } catch (IOException e) {
-            log.error("Erreur lors de l'enregistrement de l'image du projet : {}", e.getMessage());
-            throw new RuntimeException("Erreur lors de l'enregistrement de l'image du projet : " + e.getMessage());
-        }
-    }
 }

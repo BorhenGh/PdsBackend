@@ -51,9 +51,11 @@ public class ProjetController implements ProjetApi {
     }
 
     @Override
-    public Projet updateUnProjet(Projet projet, int id, MultipartFile image) {
-        return projectService.updateUnProjet(projet, id, image);
+    public Projet updateUnProjet(@RequestPart("projet") Projet projet, @PathVariable int id) {
+        return projectService.updateUnProjet(projet, id);
     }
+
+
 
     @Override
     public Optional<Projet> getProjetById(int id) {

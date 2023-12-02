@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ProjectService {
     Projet ajouterUnProjet(Projet projet);
     void supprimerUnProjet(int id);
-    Projet updateUnProjet(Projet projet, int id, MultipartFile image);
+    Projet updateUnProjet(Projet projet, int id);
     Optional<Projet> getProjetById(int id);
     Page<Projet> tousLesProjets(int page,int size);
     List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie);

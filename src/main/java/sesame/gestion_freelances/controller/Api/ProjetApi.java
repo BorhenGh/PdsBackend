@@ -21,7 +21,8 @@ public interface ProjetApi  {
 
 
     @PutMapping(Api_Root + "proj/{id}")
-    Projet updateUnProjet(@RequestPart("projet") Projet projet, @PathVariable int id, @RequestPart("image") MultipartFile image);
+    Projet updateUnProjet(@RequestPart("projet") Projet projet, @PathVariable int id);
+
     @DeleteMapping(value = Api_Root+"proj/{id}")
     void SupprimerUnProjet(@PathVariable int id);
 
