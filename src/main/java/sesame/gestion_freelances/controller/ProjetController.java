@@ -1,6 +1,7 @@
 package sesame.gestion_freelances.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -40,9 +41,10 @@ public class ProjetController implements ProjetApi {
     }
 
     @Override
-    public List<Projet> TousLesProjets() {
-        return projectService.tousLesProjets();
+    public Page<Projet> tousLesProjets(int page, int size) {
+        return projectService.tousLesProjets(page,size);
     }
+
 
     @Override
     public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {

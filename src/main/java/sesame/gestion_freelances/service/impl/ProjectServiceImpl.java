@@ -4,6 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.models.Projet;
@@ -73,8 +75,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Projet> tousLesProjets() {
-        return projetDAO.findAll();
+    public Page<Projet> tousLesProjets(int page, int size) {
+        return projetDAO.findAll(PageRequest.of(page, size));
     }
 
     @Override

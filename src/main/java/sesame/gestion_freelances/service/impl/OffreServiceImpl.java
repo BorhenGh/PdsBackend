@@ -1,6 +1,8 @@
 package sesame.gestion_freelances.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
@@ -46,9 +48,10 @@ public class OffreServiceImpl implements OffreService {
     }
 
     @Override
-    public List<Offre> tousLesOffres() {
-        return offreDAO.findAll();
+    public Page<Offre> tousLesOffres(int page, int size) {
+        return offreDAO.findAll(PageRequest.of(page, size));
     }
+
 
     @Override
     public List<Object[]> rechercherOffresParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {

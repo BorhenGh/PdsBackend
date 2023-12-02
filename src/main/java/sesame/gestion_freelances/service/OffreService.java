@@ -1,5 +1,6 @@
 package sesame.gestion_freelances.service;
 
+import org.springframework.data.domain.Page;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
@@ -16,6 +17,7 @@ public interface OffreService {
 
     Optional<Offre> getOffreById(int id);
 
-    List<Offre> tousLesOffres();
+
+    Page<Offre> tousLesOffres(int page, int size);
   List<Object[]> rechercherOffresParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie);
 }

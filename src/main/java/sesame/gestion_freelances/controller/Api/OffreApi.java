@@ -1,5 +1,6 @@
 package sesame.gestion_freelances.controller.Api;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
@@ -18,7 +19,7 @@ public interface OffreApi {
     @GetMapping(value = Api_Root+"offer/{id}")
     Optional<Offre> getOffreById(@PathVariable int id);
     @GetMapping(value = Api_Root+"offer/All")
-    List<Offre> tousLesOffres();
+    Page<Offre> tousLesOffres(  @RequestParam(defaultValue = "0")int page,   @RequestParam(defaultValue = "10") int size);
     @GetMapping(value = Api_Root+"offer/recherche/{domaine}/{technologie}")
     List<Object[]> rechercherOffresParDomaineEtTechnologie(
             @PathVariable("domaine") DomaineExpertise domaine,

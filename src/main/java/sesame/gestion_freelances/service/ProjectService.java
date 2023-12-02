@@ -1,5 +1,6 @@
 package sesame.gestion_freelances.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
@@ -13,6 +14,6 @@ public interface ProjectService {
     void supprimerUnProjet(int id);
     Projet updateUnProjet(Projet projet, int id, MultipartFile image);
     Optional<Projet> getProjetById(int id);
-    List<Projet> tousLesProjets();
+    Page<Projet> tousLesProjets(int page,int size);
     List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie);
 }
