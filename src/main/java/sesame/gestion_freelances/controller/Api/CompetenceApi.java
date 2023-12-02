@@ -17,7 +17,7 @@ public interface CompetenceApi {
     Competence UpdateUneCompetence(@RequestBody Competence competence,@PathVariable int id);
     @GetMapping(value = Api_Root +"Compet/{id}")
     Optional<Competence> getUneCompetenceById(@PathVariable int id);
-    @GetMapping(value = Api_Root+"/Compet/All")
+    @GetMapping("Compet/All")
     List<Competence> TousLesCompetences();
 }
 

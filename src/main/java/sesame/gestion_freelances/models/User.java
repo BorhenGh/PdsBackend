@@ -61,7 +61,12 @@ public class User implements UserDetails {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "freelancer")
+    @ManyToMany
+    @JoinTable(
+            name = "freelancer_competence",
+            joinColumns = @JoinColumn(name = "freelancer_id"),
+            inverseJoinColumns = @JoinColumn(name = "competence_id")
+    )
     private List<Competence> competences;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

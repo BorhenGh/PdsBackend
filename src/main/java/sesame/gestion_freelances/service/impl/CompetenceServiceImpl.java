@@ -31,7 +31,7 @@ public class CompetenceServiceImpl implements CompetenceService {
         if (existingCompetence.isPresent()) {
             Competence updatedskills = existingCompetence.get();
             updatedskills.setNom(competence.getNom());
-            updatedskills.setFreelancer(competence.getFreelancer());
+            updatedskills.setFreelancers(competence.getFreelancers());
             updatedskills.setTypeC(competence.getTypeC());
             updatedskills.setNiveauC(competence.getNiveauC());
             return competenceDAO.save(updatedskills);
