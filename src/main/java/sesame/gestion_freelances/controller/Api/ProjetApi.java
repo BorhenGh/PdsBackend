@@ -28,10 +28,11 @@ public interface ProjetApi  {
 
     @GetMapping(value = Api_Root+"proj/{id}")
     Optional<Projet> getProjetById(@PathVariable  int id);
-    @GetMapping(value = Api_Root+"proj/All")
+    @GetMapping(value = Api_Root+"proj/pagination/All")
     Page<Projet> tousLesProjets( @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int size);
     @GetMapping(value = Api_Root+"/proj/recherche/{domaine}/{technologie}")
     List<Object[]> rechercherProjetsParDomaineEtTechnologie(@PathVariable DomaineExpertise domaine,@PathVariable Technologie technologie);
-
+    @GetMapping(value = Api_Root+"proj/All")
+    List<Projet> findAll();
 
 }

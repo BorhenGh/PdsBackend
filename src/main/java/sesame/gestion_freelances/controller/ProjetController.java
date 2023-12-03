@@ -72,4 +72,9 @@ public class ProjetController implements ProjetApi {
     public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {
         return projectService.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }
+
+    @Override
+    public List<Projet> findAll() {
+        return projectService.findAll();
+    }
 }

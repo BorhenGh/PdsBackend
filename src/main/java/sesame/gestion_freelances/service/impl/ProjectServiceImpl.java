@@ -68,6 +68,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Projet> findAll() {
+        return projetDAO.findAll();
+    }
+
+    @Override
     public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {
         return projetDAO.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }

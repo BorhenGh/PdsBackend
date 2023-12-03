@@ -71,4 +71,14 @@ public class OffreController implements OffreApi {
    public List<Object[]> rechercherOffresParDomaineEtTechnologie(@PathVariable DomaineExpertise domaine, @PathVariable Technologie technologie) {
         return offreService.rechercherOffresParDomaineEtTechnologie(domaine,technologie);
     }
+
+    @Override
+    public List<Offre> findAll() {
+        return offreService.findAll();
+    }
+
+    @Override
+    public Page<Object> getAllOffresAndProjets(int page, int size) {
+        return offreService.getAllOffresAndProjets(page,size);
+    }
 }
