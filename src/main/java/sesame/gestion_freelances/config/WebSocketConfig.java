@@ -10,6 +10,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
 
 import java.util.List;
 @Configuration
@@ -25,8 +26,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws")
-                .withSockJS();
+        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
+
+    }
+
+    @Override
+    public void configureWebSocketTransport(WebSocketTransportRegistration registration) {
+        registration.setMessageSizeLimit(8192)
+                .setSendBufferSizeLimit(8192)
+                .setSendTimeLimit(10000);
     }
 
     @Override

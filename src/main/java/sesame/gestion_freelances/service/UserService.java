@@ -17,6 +17,6 @@ public interface UserService {
     void updateProfileImage(MultipartFile image, Principal connectedUser);
 
     void updateProfileAndDetails(MultipartFile image, UserDetailsUpdateRequest userDetails, Principal connectedUser);
-
-
+     User getUserById(int userId);
+   User saveUser(User user) ;
 }

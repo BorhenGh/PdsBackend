@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("Password are not the same");
         }
 
-        // update the password
+
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
 
 
@@ -123,14 +123,13 @@ public class UserServiceImpl implements UserService {
 
         repository.save(user);
     }
-    public User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof User) {
-            return (User) authentication.getPrincipal();
-        }
-        return null;
+
+
+    public User getUserById(int userId) {
+        return repository.findById(userId).orElse(null);
     }
 
-
-
+    public User saveUser(User user) {
+        return repository.save(user);
+    }
 }

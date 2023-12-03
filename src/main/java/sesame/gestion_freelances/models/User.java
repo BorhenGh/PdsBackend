@@ -75,7 +75,12 @@ public class User implements UserDetails {
         }
         return Collections.emptyList();
     }
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    private List<Message> sentMessages;
+@JsonIgnore
+    @OneToMany(mappedBy = "recipient", fetch = FetchType.LAZY)
+    private List<Message> receivedMessages;
     @Override
     public String getPassword() {
         return password;
