@@ -23,7 +23,7 @@ public interface OffreApi {
     @GetMapping(value = Api_Root+"offer/{id}")
     Optional<Offre> getOffreById(@PathVariable int id);
     @GetMapping(value = Api_Root+"offer/All")
-    Page<Offre> tousLesOffres(  @RequestParam(defaultValue = "0")int page,   @RequestParam(defaultValue = "10") int size);
+    Page<Offre> tousLesOffres(  @RequestParam(defaultValue = "0")int page,   @RequestParam(defaultValue = "7") int size);
     @GetMapping(value = Api_Root+"offer/recherche/{domaine}/{technologie}")
     List<Object[]> rechercherOffresParDomaineEtTechnologie(
             @PathVariable("domaine") DomaineExpertise domaine,
