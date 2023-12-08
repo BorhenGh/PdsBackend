@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.models.Projet;
 import sesame.gestion_freelances.repository.ProjetDAO;
 import sesame.gestion_freelances.service.ProjectService;
@@ -76,6 +77,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie) {
         return projetDAO.rechercherProjetsParDomaineEtTechnologie(domaine, technologie);
     }
-
+    public List<Projet> getProjetByUserId(int userId) {
+        // Implement the logic to fetch offers by user ID from the repository
+        return projetDAO.findByEntrepriseId(userId);
+    }
 
 }

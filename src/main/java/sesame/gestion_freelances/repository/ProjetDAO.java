@@ -7,6 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
+import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.models.Projet;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface ProjetDAO extends JpaRepository<Projet,Integer> {
             @Param("domaine") DomaineExpertise domaine,
             @Param("technologie") Technologie technologie
     );
+
+    List<Projet> findByEntrepriseId(int userId);
 }

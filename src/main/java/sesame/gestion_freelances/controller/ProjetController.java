@@ -8,6 +8,7 @@ import sesame.gestion_freelances.controller.Api.ProjetApi;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.ImageModel;
+import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.models.Projet;
 import sesame.gestion_freelances.service.ProjectService;
 
@@ -76,5 +77,10 @@ public class ProjetController implements ProjetApi {
     @Override
     public List<Projet> findAll() {
         return projectService.findAll();
+    }
+
+    @Override
+    public List<Projet> getProjetByUserId(int userId) {
+        return projectService.getProjetByUserId(userId);
     }
 }

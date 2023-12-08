@@ -78,4 +78,12 @@ public class OffreServiceImpl implements OffreService {
         listeOffresProjets.addAll(offres.getContent());
         listeOffresProjets.addAll(projets.getContent());
         return new PageImpl<>(listeOffresProjets, PageRequest.of(page, size), offres.getTotalElements() + projets.getTotalElements());
-}}
+}
+
+    public List<Offre> getOffresByUserId(int userId) {
+        // Implement the logic to fetch offers by user ID from the repository
+        return offreDAO.findByFreelancerId(userId);
+    }
+
+
+}

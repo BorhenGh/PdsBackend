@@ -18,4 +18,5 @@ public interface ProjectService {
     Page<Projet> tousLesProjets(int page,int size);
     List<Projet> findAll();
     List<Object[]> rechercherProjetsParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie);
+    List<Projet> getProjetByUserId(int userId);
 }

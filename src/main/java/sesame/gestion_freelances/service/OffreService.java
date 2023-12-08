@@ -22,4 +22,6 @@ public interface OffreService {
     Page<Offre> tousLesOffres(int page, int size);
   List<Object[]> rechercherOffresParDomaineEtTechnologie(DomaineExpertise domaine, Technologie technologie);
     Page<Object> getAllOffresAndProjets(int page, int size);
+    List<Offre> getOffresByUserId(int userId);
+
 }

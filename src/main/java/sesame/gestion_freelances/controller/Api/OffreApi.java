@@ -33,4 +33,7 @@ public interface OffreApi {
     List<Offre> findAll();
     @GetMapping(value = Api_Root+"/offres-et-projets")
     Page<Object> getAllOffresAndProjets(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size);
+
+    @GetMapping(value = Api_Root+"/offer/user/{userId}")
+    List<Offre> getOffresByUserId(@PathVariable int userId) ;
 }

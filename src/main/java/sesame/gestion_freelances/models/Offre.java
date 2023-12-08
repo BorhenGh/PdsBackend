@@ -49,7 +49,7 @@ public class Offre {
     )
     private Set<ImageModel> productImagess;
 
-    public Set<ImageModel> getProductImages() {
+    public Set<ImageModel> getProductImagess() {
         return productImagess;
     }
 }

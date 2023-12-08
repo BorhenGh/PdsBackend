@@ -81,4 +81,9 @@ public class OffreController implements OffreApi {
     public Page<Object> getAllOffresAndProjets(int page, int size) {
         return offreService.getAllOffresAndProjets(page,size);
     }
+
+    @Override
+    public List<Offre> getOffresByUserId(int userId) {
+        return offreService.getOffresByUserId(userId);
+    }
 }
