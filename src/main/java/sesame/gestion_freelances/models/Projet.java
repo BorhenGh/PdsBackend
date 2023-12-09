@@ -23,6 +23,7 @@ public class Projet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String titre;
+    private String place;
     private String description;
     @Enumerated(EnumType.STRING)
     private DomaineExpertise domaineExpertise;
