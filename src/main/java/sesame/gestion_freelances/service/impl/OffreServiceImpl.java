@@ -42,6 +42,7 @@ public class OffreServiceImpl implements OffreService {
             updatedOffre.setPrix_heure(offre.getPrix_heure());
             updatedOffre.setDomaineExpertise(offre.getDomaineExpertise());
             updatedOffre.setTechnologie(offre.getTechnologie());
+            updatedOffre.setExperience(offre.getExperience());
             return offreDAO.save(updatedOffre);
         } else {
             throw new RuntimeException("Offre non trouvée avec l'ID : " + id);

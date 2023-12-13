@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
             updatedProjet.setBudget(projet.getBudget());
             updatedProjet.setDuree(projet.getDuree());
             updatedProjet.setStatusProjet(projet.getStatusProjet());
-
+            updatedProjet.setExperience(projet.getExperience());
             return projetDAO.save(updatedProjet);
         } else {
             throw new EntityNotFoundException("Projet non trouvé avec l'ID : " + id);

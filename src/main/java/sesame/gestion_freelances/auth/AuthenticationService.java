@@ -38,6 +38,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .numTel(request.getNumTel())
+                .siteweb(request.getSiteweb())
                 .pays(request.getPays())
                 .role(request.getRole())
                 .nomEntreprise(request.getNomEntreprise())

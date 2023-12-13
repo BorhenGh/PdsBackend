@@ -5,11 +5,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
-import sesame.gestion_freelances.models.Enumeration.StatusProjet;
-import sesame.gestion_freelances.models.Enumeration.Technologie;
+import sesame.gestion_freelances.models.Enumeration.*;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -35,8 +34,12 @@ public class Projet {
     private int duree;
     @Enumerated(EnumType.STRING)
     private StatusProjet statusProjet;
-
-
+    private int nombreDePostesVacants;
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private LocalDate postDate;
+    @Enumerated(EnumType.STRING)
+    private NatureTravail natureDuTravail;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "projet_images",
             joinColumns = {

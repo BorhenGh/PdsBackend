@@ -6,8 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +40,11 @@ public class Offre {
     @JsonIgnore
     @OneToMany(mappedBy = "offre")
     private List<DemandeRecrutement> demandeRecrutements;
-
+@Enumerated(EnumType.STRING)
+    private Experience experience;
+    private LocalDate postDate;
+    @Enumerated(EnumType.STRING)
+    private NatureTravail natureDuTravail;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "projet_imagess",
             joinColumns = {

@@ -20,5 +20,6 @@ public class RegisterRequest {
     private int numTel;
     private Pays pays;
     private String nomEntreprise;
+    private String siteweb;
     private Role role;
 }

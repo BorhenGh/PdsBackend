@@ -35,6 +35,7 @@ public class User implements UserDetails {
     private String nomEntreprise;
 
     private String password;
+    private String siteweb;
     private boolean etatDispo;
     private int numTel;
     @Enumerated(EnumType.STRING)
