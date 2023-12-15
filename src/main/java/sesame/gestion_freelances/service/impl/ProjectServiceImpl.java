@@ -7,17 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import sesame.gestion_freelances.models.Offre;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Projet;
 import sesame.gestion_freelances.repository.ProjetDAO;
 import sesame.gestion_freelances.service.ProjectService;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -81,5 +78,11 @@ public class ProjectServiceImpl implements ProjectService {
         // Implement the logic to fetch offers by user ID from the repository
         return projetDAO.findByEntrepriseId(userId);
     }
+
+    @Override
+    public List<Projet> rechercherProjetsByCriteria(DomaineExpertise domaineExpertise, Technologie technologie, NatureTravail natureTravail, Experience experience) {
+        return projetDAO.rechercherProjetsCriteria(domaineExpertise,technologie,natureTravail,experience);
+    }
+
 
 }

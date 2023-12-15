@@ -1,5 +1,6 @@
 package sesame.gestion_freelances.controller;
 
+import org.apache.commons.lang3.EnumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.controller.Api.OffreApi;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.ImageModel;
 import sesame.gestion_freelances.models.Offre;
@@ -86,4 +89,11 @@ public class OffreController implements OffreApi {
     public List<Offre> getOffresByUserId(int userId) {
         return offreService.getOffresByUserId(userId);
     }
+
+    @Override
+    public List<Offre> rechercherOffresByCriteria(Technologie technologie, NatureTravail natureDuTravail, Experience experience, DomaineExpertise domaineExpertise) {
+        return offreService.rechercherOffresByCriteria(domaineExpertise, technologie, natureDuTravail, experience);
+    }
+
+
 }

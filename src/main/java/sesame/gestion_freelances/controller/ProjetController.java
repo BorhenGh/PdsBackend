@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.controller.Api.ProjetApi;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.ImageModel;
 import sesame.gestion_freelances.models.Offre;
@@ -82,5 +84,10 @@ public class ProjetController implements ProjetApi {
     @Override
     public List<Projet> getProjetByUserId(int userId) {
         return projectService.getProjetByUserId(userId);
+    }
+
+    @Override
+    public List<Projet> rechercherProjetsByCriteria(Technologie technologie, NatureTravail natureDuTravail, Experience experience, DomaineExpertise domaineExpertise) {
+        return projectService.rechercherProjetsByCriteria(domaineExpertise, technologie, natureDuTravail, experience);
     }
 }

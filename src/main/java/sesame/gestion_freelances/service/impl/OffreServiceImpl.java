@@ -6,6 +6,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.models.Projet;
@@ -58,6 +60,12 @@ public class OffreServiceImpl implements OffreService {
     public List<Offre> findAll() {
         return offreDAO.findAll();
     }
+
+    @Override
+    public List<Offre> rechercherOffresByCriteria(DomaineExpertise domaineExpertise, Technologie technologie, NatureTravail natureTravail, Experience experience) {
+        return offreDAO.rechercherOffresCriteria(domaineExpertise,technologie,natureTravail,experience);
+    }
+
 
     @Override
     public Page<Offre> tousLesOffres(int page, int size) {

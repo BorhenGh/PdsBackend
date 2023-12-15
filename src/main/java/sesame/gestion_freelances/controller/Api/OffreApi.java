@@ -5,11 +5,12 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
 import static sesame.gestion_freelances.utils.Constants.Api_Root;
 
-import java.rmi.MarshalException;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,4 +37,9 @@ public interface OffreApi {
 
     @GetMapping(value = Api_Root+"/offer/user/{userId}")
     List<Offre> getOffresByUserId(@PathVariable int userId) ;
+    @GetMapping(value = Api_Root+"rechercher-offres")
+    List<Offre> rechercherOffresByCriteria(@RequestParam(required = false) Technologie technologie,
+                                           @RequestParam(required = false) NatureTravail natureDuTravail,
+                                           @RequestParam(required = false) Experience experience,
+                                           @RequestParam(required = false) DomaineExpertise domaineExpertise);
 }

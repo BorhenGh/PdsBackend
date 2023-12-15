@@ -5,6 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sesame.gestion_freelances.models.Enumeration.DomaineExpertise;
+import sesame.gestion_freelances.models.Enumeration.Experience;
+import sesame.gestion_freelances.models.Enumeration.NatureTravail;
 import sesame.gestion_freelances.models.Enumeration.Technologie;
 import sesame.gestion_freelances.models.Offre;
 import sesame.gestion_freelances.models.Projet;
@@ -37,4 +39,9 @@ public interface ProjetApi  {
     List<Projet> findAll();
     @GetMapping(value = Api_Root+"/proj/user/{userId}")
     List<Projet> getProjetByUserId(@PathVariable int userId) ;
+    @GetMapping(value = Api_Root+"rechercher-projets")
+    List<Projet> rechercherProjetsByCriteria(@RequestParam(required = false) Technologie technologie,
+                                             @RequestParam(required = false) NatureTravail natureDuTravail,
+                                             @RequestParam(required = false) Experience experience,
+                                             @RequestParam(required = false) DomaineExpertise domaineExpertise);
 }
