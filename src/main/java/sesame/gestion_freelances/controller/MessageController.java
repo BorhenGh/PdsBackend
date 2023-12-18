@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.*;
 import sesame.gestion_freelances.models.Message;
@@ -18,11 +19,16 @@ import java.util.List;
 @RequestMapping("/api/v1/messages")
 public class MessageController {
 
-    @Autowired
-    private MessageService messageService;
+    private final MessageService messageService;
+    private final UserService userService;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @Autowired
-    private UserService userService;
+    public MessageController(MessageService messageService, UserService userService, SimpMessagingTemplate messagingTemplate) {
+        this.messageService = messageService;
+        this.userService = userService;
+        this.messagingTemplate = messagingTemplate;
+    }
 
     @PostMapping("/send")
     public ResponseEntity<String> sendMessage(@RequestBody Message message) {
@@ -84,7 +90,6 @@ public class MessageController {
             messageService.sendMessageToUser(message.getRecipient(), message);
         }
     }
-
     @SubscribeMapping("/chat/{userId1}/{userId2}")
     public List<Message> getChatBetweenUsersWebSocket(
             @DestinationVariable int userId1,

@@ -39,7 +39,7 @@ public class SecurityConfiguration {
     "/current-user"
     ,"/api/v1/offer/pagination/All","/api/v1/proj/pagination/All","/offres-et-projets","/api/v1/rechercher-offres","/api/v1/rechercher-projets",
             "/api/v1/rechercher-projets" ,
-            "/ws/**","ws://localhost:8080/ws",
+            "/ws/**","ws://localhost:8080/ws" ,"/api/v1/**",
     };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

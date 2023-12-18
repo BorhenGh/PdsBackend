@@ -77,10 +77,11 @@ public class User implements UserDetails {
         return Collections.emptyList();
     }
     @JsonIgnore
-    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
     private List<Message> sentMessages;
-@JsonIgnore
-    @OneToMany(mappedBy = "recipient", fetch = FetchType.LAZY)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "recipient", fetch = FetchType.EAGER)
     private List<Message> receivedMessages;
     @Override
     public String getPassword() {

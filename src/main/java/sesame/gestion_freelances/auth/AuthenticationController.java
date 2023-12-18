@@ -13,6 +13,7 @@ import sesame.gestion_freelances.models.User;
 import sesame.gestion_freelances.repository.UserRepository;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -46,5 +47,9 @@ private final UserRepository repository;
         service.refreshToken(request, response);
     }
 
-
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = repository.findAll();
+        return ResponseEntity.ok(users);
+    }
 }

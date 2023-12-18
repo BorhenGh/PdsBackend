@@ -1,6 +1,7 @@
 package sesame.gestion_freelances.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,8 +34,17 @@ public class Message {
 
     private String content;
 
+    /*
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateSent;
+
+
+     */
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    private Date dateSent;
+
 
     public void setMessageSender(User sender) {
         this.sender = sender;
