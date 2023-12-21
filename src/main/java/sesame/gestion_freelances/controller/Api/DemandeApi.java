@@ -2,6 +2,7 @@ package sesame.gestion_freelances.controller.Api;
 
 import org.springframework.web.bind.annotation.*;
 import sesame.gestion_freelances.models.DemandeRealisation;
+import sesame.gestion_freelances.models.Projet;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,4 +32,6 @@ public interface DemandeApi {
     public List<DemandeRealisation> findAllValider();
     @DeleteMapping(value = Api_Root +"/{id}")
     void delete(@PathVariable int id);
+    @GetMapping(value = Api_Root+"demandeF/projets-realises/{idFreelancer}")
+    List<Projet> findProjetsRealisesByFreelancerId(@PathVariable int idFreelancer);
 }

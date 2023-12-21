@@ -140,4 +140,9 @@ public class DemandeServiceImpl implements DemandeService {
          demandeRealisationDAO.deleteById(id);
     }
 
+    @Override
+    public List<Projet> findProjetsRealisesByFreelancerId(int idFreelancer) {
+        return demandeRealisationDAO.findProjetsRealisesByFreelancerId(idFreelancer);
+    }
+
 }

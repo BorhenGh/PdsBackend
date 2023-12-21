@@ -22,6 +22,8 @@ public interface DemandeRealisationDAO extends JpaRepository<DemandeRealisation,
     List<Object[]> findAllDemandeValidForFreealncer(@Param("idFreelancer") Integer idFreelancer);
     boolean existsByProjetAndFreelancer(Projet projet, User freelancer);
     List<DemandeRealisation> findAllByEtatD(EtatDemande etat);
+    @Query("SELECT DISTINCT dr.projet FROM DemandeRealisation dr WHERE dr.freelancer.id = :idFreelancer AND dr.etatD = 'Valider'")
+    List<Projet> findProjetsRealisesByFreelancerId(int idFreelancer);
 
 
 }

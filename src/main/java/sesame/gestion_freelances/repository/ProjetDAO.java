@@ -32,4 +32,5 @@ public interface ProjetDAO extends JpaRepository<Projet,Integer> {
             @Param("natureTravail") NatureTravail natureTravail,
             @Param("experience") Experience experience);
     List<Projet> findByEntrepriseId(int userId);
+
 }

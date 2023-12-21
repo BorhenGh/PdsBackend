@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import sesame.gestion_freelances.controller.Api.DemandeApi;
 import sesame.gestion_freelances.models.DemandeRealisation;
+import sesame.gestion_freelances.models.Projet;
 import sesame.gestion_freelances.service.DemandeService;
 
 import java.util.List;
@@ -60,5 +61,10 @@ public class DemandeController implements DemandeApi {
     @Override
     public void delete(int id) {
 demandeService.delete(id);
+    }
+
+    @Override
+    public List<Projet> findProjetsRealisesByFreelancerId(int idFreelancer) {
+        return demandeService.findProjetsRealisesByFreelancerId(idFreelancer);
     }
 }
