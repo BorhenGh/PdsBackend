@@ -79,7 +79,14 @@ public class User implements UserDetails {
     @JsonIgnore
     @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
     private List<Message> sentMessages;
+    @JsonIgnore
 
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+    private List<Ticket> createdTickets;
+    @JsonIgnore
+
+    @OneToMany(mappedBy = "assignedTo", cascade = CascadeType.ALL)
+    private List<Ticket> assignedTickets;
     @JsonIgnore
     @OneToMany(mappedBy = "recipient", fetch = FetchType.EAGER)
     private List<Message> receivedMessages;
