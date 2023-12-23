@@ -2,9 +2,11 @@ package sesame.gestion_freelances.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sesame.gestion_freelances.models.Enumeration.TicketStatus;
 import sesame.gestion_freelances.models.Ticket;
 import sesame.gestion_freelances.repository.TicketRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +50,16 @@ public class TicketService {
 
     public List<Ticket> getTicketsByUserId(Long userId) {
         return ticketRepository.findByCreatedBy_IdOrAssignedTo_Id(userId, userId);
+    }
+
+    public Ticket updateTicketWorkflowStatus(Long id, TicketStatus newStatus) {
+        Optional<Ticket> optionalTicket = ticketRepository.findById(id);
+        if (optionalTicket.isPresent()) {
+            Ticket ticket = optionalTicket.get();
+            ticket.setStatus(newStatus);
+            ticket.setLastUpdated(LocalDateTime.now());
+            return ticketRepository.save(ticket);
+        }
+        return null;
     }
 }

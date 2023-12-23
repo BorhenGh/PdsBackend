@@ -3,6 +3,7 @@ package sesame.gestion_freelances.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sesame.gestion_freelances.models.Enumeration.TicketStatus;
 import sesame.gestion_freelances.models.Ticket;
 import sesame.gestion_freelances.service.impl.TicketService;
 
@@ -52,5 +53,14 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> getTicketsByUserId(@PathVariable Long userId) {
         List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
         return ResponseEntity.ok(tickets);
+    }
+    @PutMapping("/{id}/update-status")
+    public ResponseEntity<Ticket> updateTicketWorkflowStatus(@PathVariable Long id, @RequestParam TicketStatus newStatus) {
+        Ticket updatedTicket = ticketService.updateTicketWorkflowStatus(id, newStatus);
+        if (updatedTicket != null) {
+            return ResponseEntity.ok(updatedTicket);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import sesame.gestion_freelances.models.Enumeration.TicketStatus;
 
+import java.time.LocalDateTime;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
+    private LocalDateTime lastUpdated;
 
     @ManyToOne
     @JoinColumn(name = "created_by")
