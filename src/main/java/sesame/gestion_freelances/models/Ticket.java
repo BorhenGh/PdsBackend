@@ -18,7 +18,8 @@ public class Ticket {
     private Long id;
 
     private String summary;
-
+    @Column(length = 1000)
+    private String description;
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
     private LocalDateTime lastUpdated;
